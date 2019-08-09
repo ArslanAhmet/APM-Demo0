@@ -1,8 +1,25 @@
-export function reducer(state, action) {
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+
+export interface UserState {
+  showUserCode: boolean;
+}
+
+
+const initialState: UserState = {
+  showUserCode: false
+};
+
+const getUserFeatureState = createFeatureSelector<UserState>('user');
+
+export const getShowUserCode = createSelector(
+  getUserFeatureState,
+  state => state.showUserCode
+);
+
+
+export function reducer(state = initialState, action): UserState {
   switch (action.type) {
     case 'TOGGLE_USER_CODE':
-      console.log('existing user state' + JSON.stringify(state));
-      console.log('action user payload:' + action.payload);
       return {
         ...state,
         showUserCode: action.payload
