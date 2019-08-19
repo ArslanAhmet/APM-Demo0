@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { UserActions, UserActionTypes } from "./user.actions";
 
 export interface UserState {
   showUserCode: boolean;
@@ -17,9 +18,9 @@ export const getShowUserCode = createSelector(
 );
 
 
-export function reducer(state = initialState, action): UserState {
+export function reducer(state = initialState, action: UserActions): UserState {
   switch (action.type) {
-    case 'TOGGLE_USER_CODE':
+    case UserActionTypes.ToggleUserCode:
       return {
         ...state,
         showUserCode: action.payload
